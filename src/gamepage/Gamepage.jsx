@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../homepage/Homepage.css';
+import { Link } from 'react-router-dom';
 
 
 function Gamepage() {
@@ -32,8 +33,11 @@ function Gamepage() {
   }, [playerTwoChoice])
 
   return (
+    <>
+    <Link to='/' style={{color:'white', textDecoration:'none', margin:'10px'}}>Home</Link>
     <div className='outerContainer'
     style={{display:"flex", gap:"20px", alignItems:'center', justifyContent:'center'}}>
+        
         <div className='cards' 
         style={{height:'70vh', width:"20vw", border:"2px solid red", padding:'2rem', borderRadius:'10px',
         display:"flex", flexDirection:"column", gap:"20px" }}>
@@ -50,6 +54,7 @@ function Gamepage() {
                 <span style={{color:'white', textAlign:'center', fontSize:'30px', marginTop:'50%'}}>{playerOneShowChoice}</span>
             </div>
         </div>
+        {buttonsHidden && (
         <div className='cards' 
         style={{height:'70vh', width:"20vw", border:"2px solid red", padding:'2rem', borderRadius:'10px',}}>
           <div className='palyerTwoDiv' style={{ height:"90%", width:"90%", textAlign:'center'}}> 
@@ -57,11 +62,14 @@ function Gamepage() {
           <span style={{color:'white', textAlign:'center', fontSize:'30px', marginTop:'50%'}}>{playerTwoShowChoice}</span>
           )}
           </div>
-        </div>
-        {buttonsHidden && (
-          <button onClick={()=>resetGame()}>Play Again</button>
-        )}
+        </div> 
+        )}       
     </div>
+    {buttonsHidden && (
+          <button style={{marginLeft:'43%', marginTop:'2%'}}
+          onClick={()=>resetGame()}>Play Again</button>
+        )}
+    </>
  )
 }
 
