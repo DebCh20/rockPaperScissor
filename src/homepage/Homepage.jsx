@@ -1,5 +1,6 @@
 import React from 'react'
-import './Homepage.css'
+import './Homepage.css';
+import { Link, Navigate } from "react-router-dom";
 
 function Homepage() {
   return (
@@ -7,11 +8,9 @@ function Homepage() {
         <h1 style={{color:'white', fontFamily:'Verdana', fontSize:'120px', textAlign:'center'}}>Rock. Paper. Scissor.</h1>
         <h3 style={{textAlign:'center',color:'white', fontFamily:'Verdana', fontWeight:'lighter'}}>The childhood game now got even more interesting !!</h3>
         <br/>
-        <button style={{position:"absolute", left:"45%", cursor:"pointer", marginBottom:"20px"}}
-        onClick={()=>{
-            
-        }}
-        className='playBtn'>Play now</button>
+        <Link style={{textDecoration:'none', color:"white", marginLeft:'45%', fontSize:"20px"
+        , fontFamily:"Verdana", border:"1px solid teal", padding:'10px', borderRadius:'5px'}} 
+        to="/gamepage">Start Game</Link>
        
     </div>
   )
