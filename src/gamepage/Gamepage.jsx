@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../homepage/Homepage.css';
 import { Link } from 'react-router-dom';
+import './Gamepage.css'
 
 
 function Gamepage() {
@@ -9,13 +10,13 @@ function Gamepage() {
   let choices = ["Rock", "Paper", "Scissor"];
   let [playerTwoShowChoice, setPlayerTwoShowChoice] = useState();
   let [playerOneShowChoice, setPlayerOneShowChoice] = useState();
+  let [result, setResult] = useState();
   const [buttonsHidden, setButtonsHidden] = useState(false);
 
   function gameFunct(e){
-    console.log(e.target.value); 
     setPlayerOneShowChoice(e.target.value);   
     setButtonsHidden(true);
-    playerTwoChoiceGenerator();
+    playerTwoChoiceGenerator(e);
   }
 
   function resetGame() {
@@ -25,11 +26,36 @@ function Gamepage() {
   
   function playerTwoChoiceGenerator(){
     let index = Math.floor(Math.random()*10);
-    setPlayerTwoChoice(index%3);   
+    setPlayerTwoChoice(index%3);  
   }
 
+  function showResult() {
+    console.log(playerOneShowChoice, playerTwoShowChoice);
+    if(playerOneShowChoice === playerTwoShowChoice)
+      setResult('Match is draw');
+    else if(playerOneShowChoice == "Rock" && playerTwoShowChoice=="Paper")
+     setResult('Player 2 won');
+    else if(playerOneShowChoice == "Paper" && playerTwoShowChoice=="Rock")
+     setResult('Player 1 won');
+    else if(playerOneShowChoice == "Scissor" && playerTwoShowChoice=="Paper")
+     setResult('Player 1 won');
+    else if(playerOneShowChoice == "Paper" && playerTwoShowChoice=="Scissor")
+     setResult('Player 2 won');
+    else if(playerOneShowChoice == "Scissor" && playerTwoShowChoice=="Rock")
+     setResult('Player 2 won');
+    else if(playerOneShowChoice == "Rock" && playerTwoShowChoice=="Scissor")
+     setResult('Player 1 won');
+    else if(playerOneShowChoice == "Scissor" && playerTwoShowChoice=="Rock")
+     setResult('Player 2 won');
+
+  }
+
+  useEffect(()=>{
+    showResult();
+  },[playerTwoShowChoice, playerOneShowChoice])
+
   useEffect(() => {
-    setPlayerTwoShowChoice(choices[playerTwoChoice]);
+    setPlayerTwoShowChoice(choices[playerTwoChoice]);    
   }, [playerTwoChoice])
 
   return (
@@ -65,6 +91,9 @@ function Gamepage() {
         </div> 
         )}       
     </div>
+    <br/>
+    {buttonsHidden && (
+    <span className="animate-character">{result}</span>)}
     {buttonsHidden && (
           <button style={{marginLeft:'43%', marginTop:'2%'}}
           onClick={()=>resetGame()}>Play Again</button>
