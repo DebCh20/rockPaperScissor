@@ -39,3 +39,38 @@ button {
       transform: rotateY(360deg);
     }
   }
+
+  @keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+h1 {
+  color: white;
+  font-family: Verdana;
+  font-size: 120px;
+  text-align: center;
+  overflow: hidden; /* Ensures the animation is contained within the h1 element */
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.line1, .line2 {
+  display: inline-block; /* Display as inline-block to allow animation */
+}
+
+.line1, .line2{
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 4s steps(50, end); /* Adjust the duration and steps as needed */
+}
+
+.line2 {
+  display: block; /* Display as block to place it on the next line */
+}
+
+  
