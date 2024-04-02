@@ -64,9 +64,7 @@ function Gamepage() {
     <div className='outerContainer'
     style={{display:"flex", gap:"20px", alignItems:'center', justifyContent:'center'}}>
         
-        <div className='cards' 
-        style={{height:'70vh', width:"20vw", border:"2px solid red", padding:'2rem', borderRadius:'10px',
-        display:"flex", flexDirection:"column", gap:"20px" }}>
+        <div className='cards'>
           
           {!buttonsHidden && (
         <>
